@@ -76,10 +76,10 @@ Where date is the import date.
 
 In the dashboard folder there are two examples of dashboard to use:
 - FND Dashboard: insights on FND events
-![Alt text](image-1.png)
+![Alt text](docs/image5.png)
 
 - FND Inventory: insights on FND Inventory
-![Alt text](image.png)
+![Alt text](docs/image6.png)
 
 To install the dasboard in Kibana: Management/Stack Management/Saved Objects
 Import the two dashboard files.
