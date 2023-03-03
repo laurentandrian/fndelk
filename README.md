@@ -72,3 +72,19 @@ Edit the CSV to remove the first 3 lines.
 Import the CSV in Kibana using the same process described above, insert the data in index called fndinventory-<date>.
 Where date is the import date.
 
+## Dashboards
+
+In the dashboard folder there are two examples of dashboard to use:
+- FND Dashboard: insights on FND events
+![Alt text](image-1.png)
+
+- FND Inventory: insights on FND Inventory
+![Alt text](image.png)
+
+To install the dasboard in Kibana: Management/Stack Management/Saved Objects
+Import the two dashboard files.
+
+Then go to the Dashboard part and select one of the imported Dashboard.
+Make sure your select the dataview that correspond to the index you created when importing the CSV.
+
+
