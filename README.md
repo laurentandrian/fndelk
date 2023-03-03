@@ -56,3 +56,19 @@ Then add the data to a new index.
 
 ![Alt text](docs/image-12.png)
 
+The other usage is to get insights in FND Inventory.
+To export FND inventory, on the FND UI select Devices/Field Devices. 
+On the left panel select Routers.
+On the right part of the views there is a plus button. 
+![Alt text](docs/image4.png)
+
+Click on plus, and create a new view with the following columns:
+```
+eid,name,status,runningFirmwareVersion,lastHeard,cellularAPN1,cellularIMEI1,cellularIMSI1,cellularRxSpeed1,cellularTxSpeed1,cellularBwPerCycle1,cellularRsrp1,cellularRssi1,cellularSnr1,cellularRsrq1,cellularID1,cellularID3,cellularNetworkName1,ip,labels,lat,lng,configGroup,configLastStatusDate,tunnelGroup
+```
+
+Select all the devices and click export as CSV.
+Edit the CSV to remove the first 3 lines.
+Import the CSV in Kibana using the same process described above, insert the data in index called fndinventory-<date>.
+Where date is the import date.
+
