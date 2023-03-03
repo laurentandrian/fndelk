@@ -37,4 +37,22 @@ Click on deploy stack, portainer will pull the docker images and run the contain
 
 To access Kibana UI : http://localhost:5601
 
+The first usage is to analyze the FND events. 
+From FND UI you can extract all the events into a CSV file with following format:
+```
+Severity,Name,Time,Event Name,Message
+```
+The exported file from FND has 3 lines at the beginning, with Events, Exported date, blank line. 
+Remove these line and save the CSV file.
+
+To import the updated CSV file in ES, on Kibana UI, Home, there is link with Upload a File, click on this link.
+![Alt text](docs/image.png)
+
+Upload your file, you will see something like this:
+![Alt text](docs/image-11.png)
+
+Click on Import at bottow left.
+Then add the data to a new index.
+
+![Alt text](docs/image-12.png)
 
