@@ -1,0 +1,155 @@
+{
+    "group_by": {
+      "Name": {
+        "terms": {
+          "field": "Name",
+          "missing_bucket": false
+        }
+      }
+    },
+    "aggregations": {
+      "RegReq": {
+        "filter": {
+          "term": {
+            "Event Name": "Registration Request"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "Up": {
+        "filter": {
+          "term": {
+            "Event Name": "Up"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "RegSucc": {
+        "filter": {
+          "term": {
+            "Event Name": "Registration Success"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "Bootstrapped": {
+        "filter": {
+          "term": {
+            "Event Name": "Bootstrapped"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "TunnelProvReq": {
+        "filter": {
+          "term": {
+            "Event Name": "Tunnel Provisioning Request"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "Bootstrapping": {
+        "filter": {
+          "term": {
+            "Event Name": "Bootstrapping"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "TunnelProvSucc": {
+        "filter": {
+          "term": {
+            "Event Name": "Tunnel Provisioning Success"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        },
+        "bootstrapDuration": {
+            "bucket_script": {
+              "buckets_path": {
+                "start": "Bootstrapping>ts",
+                "stop": "Bootstrapped>ts"
+              },
+              "script": "return (params.stop - params.start)/1000"
+            }
+          },
+          "scepDuration": {
+            "bucket_script": {
+              "buckets_path": {
+                "start": "Bootstrapped>ts",
+                "stop": "TunnelProvReq>ts"
+              },
+              "script": "return (params.stop - params.start)/1000"
+            }
+          },
+          "TunnelProvDuration": {
+            "bucket_script": {
+              "buckets_path": {
+                "start": "TunnelProvReq>ts",
+                "stop": "TunnelProvSucc>ts"
+              },
+              "script": "return (params.stop - params.start)/1000"
+            }
+          },
+          "RegDuration": {
+            "bucket_script": {
+              "buckets_path": {
+                "start": "RegReq>ts",
+                "stop": "RegSucc>ts"
+              },
+              "script": "return (params.stop - params.start)/1000"
+            }
+          },
+          "UpDuration": {
+            "bucket_script": {
+              "buckets_path": {
+                "start": "RegSucc>ts",
+                "stop": "Up>ts"
+              },
+              "script": "return (params.stop - params.start)/1000"
+            }
+          }          
+    }
+  }
+}

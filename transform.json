@@ -1,0 +1,48 @@
+{
+    "group_by": {
+      "Name": {
+        "terms": {
+          "field": "Name",
+          "missing_bucket": false
+        }
+      }
+    },
+    "aggregations": {
+      "RegSucc": {
+        "filter": {
+          "term": {
+            "Event Name": "Registration Success"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "Up": {
+        "filter": {
+          "term": {
+            "Event Name": "Up"
+          }
+        },
+        "aggs": {
+          "ts": {
+            "min": {
+              "field": "Time"
+            }
+          }
+        }
+      },
+      "UpDuration": {
+        "bucket_script": {
+          "buckets_path": {
+            "start": "RegSucc>ts",
+            "stop": "Up>ts"
+          },
+          "script": "return (params.stop - params.start)/1000"
+        }
+      }
+    }
