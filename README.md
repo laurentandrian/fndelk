@@ -18,14 +18,14 @@ Access portainer UI at http://localhost:9000
 You will need to setup a new password.
 
 On the home page select the local environment
-![Alt text](image-1.png)
+![Alt text](docs/image-1.png)
 
 Select Stacks then Add Stack, select repository and use: 
 - repository URL : https://github.com/laurentandrian/fndelk.git
 - compose path: elk-stack.yml
   
 
-![Alt text](image-3.png)
+![Alt text](docs/image-3.png)
 
 Add 3 environment variables:
 - ELK_VERSION : e.g. 8.6.0
