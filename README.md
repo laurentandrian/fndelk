@@ -21,16 +21,17 @@ On the home page select the local environment
 ![Alt text](docs/image-1.png)
 
 Select Stacks then Add Stack, select repository and use: 
+- name: e.g. fnd-elk
 - repository URL : https://github.com/laurentandrian/fndelk.git
 - compose path: elk-stack.yml
   
 
 ![Alt text](docs/image-3.png)
 
-Add 3 environment variables:
+Add 2 environment variables:
 - ELK_VERSION : e.g. 8.6.0
-- PATH_ES : local path to store ES data
-- PATH_KIBANA : local path to store Kibana data
+- LOCAL_PATH : local path to store data
+
 
 
 Click on deploy stack, portainer will pull the docker images and run the containers.
@@ -81,6 +82,7 @@ In the dashboard folder there are two examples of dashboard to use:
 - FND Inventory: insights on FND Inventory
 ![Alt text](docs/image6.png)
 
+Before you can import the dashboards you must have imported FND events or inventory files.
 To install the dasboard in Kibana: Management/Stack Management/Saved Objects
 Import the two dashboard files.
 
