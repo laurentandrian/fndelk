@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:{ELK_VERSION}
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELK_VERSION}
     container_name: elasticsearch
     volumes:
-      - elasticsearch-data:{LOCAL_PATH}/elasticsearch/data
+      - elasticsearch-data:${LOCAL_PATH}/elasticsearch/data
     ports:
       - 9200:9200
     restart: always
@@ -19,10 +19,10 @@ services:
   kibana:
     depends_on:
       - elasticsearch
-    image: docker.elastic.co/kibana/kibana:{ELK_VERSION}
+    image: docker.elastic.co/kibana/kibana:${ELK_VERSION}
     container_name: kibana
     volumes:
-      - kibana-data:{LOCAL_PATH}/kibana/data
+      - kibana-data:${LOCAL_PATH}/kibana/data
     ports:
      - 5601:5601
     restart: always
