@@ -8,41 +8,42 @@
       }
     },
     "aggregations": {
-      "RegSucc": {
+      "TunnelProvReq": {
         "filter": {
           "term": {
-            "Event Name": "Registration Success"
+            "Event Name": "Tunnel Provisioning Request"
           }
         },
         "aggs": {
           "ts": {
             "min": {
-              "field": "Time"
+              "field": "@timestamp"
             }
           }
         }
       },
-      "Up": {
+      "Bootstrapped": {
         "filter": {
           "term": {
-            "Event Name": "Up"
+            "Event Name": "Bootstrapped"
           }
         },
         "aggs": {
           "ts": {
             "min": {
-              "field": "Time"
+              "field": "@timestamp"
             }
           }
         }
       },
-      "UpDuration": {
+      "EnrollmentDuration": {
         "bucket_script": {
           "buckets_path": {
-            "start": "RegSucc>ts",
-            "stop": "Up>ts"
+            "start": "Bootstrapped>ts",
+            "stop": "TunnelProvReq>ts"
           },
           "script": "return (params.stop - params.start)/1000"
         }
       }
     }
+  }

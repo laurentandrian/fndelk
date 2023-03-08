@@ -1,0 +1,49 @@
+{
+  "group_by": {
+    "Name": {
+      "terms": {
+        "field": "Name",
+        "missing_bucket": false
+      }
+    }
+  },
+  "aggregations": {
+    "Bootstrapping": {
+      "filter": {
+        "term": {
+          "Event Name": "Bootstrapping"
+        }
+      },
+      "aggs": {
+        "ts": {
+          "min": {
+            "field": "@timestamp"
+          }
+        }
+      }
+    },
+    "Bootstrapped": {
+      "filter": {
+        "term": {
+          "Event Name": "Bootstrapped"
+        }
+      },
+      "aggs": {
+        "ts": {
+          "min": {
+            "field": "@timestamp"
+          }
+        }
+      }
+    },
+    "BootstrapDuration": {
+      "bucket_script": {
+        "buckets_path": {
+          "start": "Bootstrapping>ts",
+          "stop": "Bootstrapped>ts"
+        },
+        "script": "return (params.stop - params.start)/1000"
+      }
+    }
+  }
+}
